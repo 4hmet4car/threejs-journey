@@ -10,7 +10,6 @@ Each lesson lives in its own folder and is deployed individually with Vercel.
 
 ## 🧱 Structure
 
-```txt
 threejs-journey/
 ├── [03-first-threejs-project](https://4hmet4car-03-first-threejs-project.vercel.app/)
 ├── LICENSE
