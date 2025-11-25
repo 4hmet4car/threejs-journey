@@ -10,9 +10,7 @@ Each lesson lives in its own folder and is deployed individually with Vercel.
 
 ## 🌲 Structure
 
-<pre>
-threejs-journey/
-├── [03-first-threejs-project](https://4hmet4car-03-first-threejs-project.vercel.app/)
-├── LICENSE
-└── README.md
-</pre>
+threejs-journey/<br>
+├── [03-first-threejs-project](https://4hmet4car-03-first-threejs-project.vercel.app/)<br>
+├── LICENSE<br>
+└── README.md<br>
