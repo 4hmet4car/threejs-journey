@@ -13,5 +13,6 @@ threejs-journey/<br>
 ├── [03-first-threejs-project](https://4hmet4car-03-first-threejs-project.vercel.app/)<br>
 ├── [04-transform-objects](https://4hmet4car-04-transform-objects.vercel.app/)<br>
 ├── [05-animations](https://4hmet4car-05-animations.vercel.app/)<br>
+├── [06-cameras](https://4hmet4car-06-cameras.vercel.app/)<br>
 ├── LICENSE<br>
 └── README.md<br>
