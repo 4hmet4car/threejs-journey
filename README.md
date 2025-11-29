@@ -15,5 +15,6 @@ threejs-journey/<br>
 ├── [05-animations](https://4hmet4car-05-animations.vercel.app/)<br>
 ├── [06-cameras](https://4hmet4car-06-cameras.vercel.app/)<br>
 ├── [07-fullscreen-and-resizing](https://4hmet4car-07-fullscreen-and-resizing.vercel.app/)<br>
+├── [08-geometries](https://4hmet4car-08-geometries.vercel.app/)<br>
 ├── LICENSE<br>
 └── README.md<br>
