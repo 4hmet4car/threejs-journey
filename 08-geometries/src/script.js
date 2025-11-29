@@ -41,7 +41,7 @@ const triangleBuilder = ()=>{
 }
 
 const material = new THREE.MeshBasicMaterial({ 
-    color: 0xff0000,
+    color: 0x000000,
     wireframe: true
 })
 const mesh = new THREE.Mesh(geometry, material)
@@ -79,8 +79,9 @@ controls.enableDamping = true
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
-    canvas: canvas
+    canvas: canvas,
 })
+renderer.setClearColor(0xffffff)
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
