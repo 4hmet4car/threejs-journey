@@ -52,7 +52,7 @@ const sphereBuilder = ()=>{
         spherePositionsArray[i+2]=Math.sin(Math.PI*ra1) * 0.5
     }
     sphereGeometry.setAttribute('position',spherePositionsAttribute)
-}
+} 
 
 sphereBuilder()
 
