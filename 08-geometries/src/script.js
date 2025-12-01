@@ -28,24 +28,41 @@ const scene = new THREE.Scene()
 // geometry.setAttribute('position', positionsAttribute)
 
 // Random triangles
-const count = 1000
-const positionsArray = new Float32Array(count * 3 * 3)
-const positionsAttribute = new THREE.BufferAttribute(positionsArray,3)
-const geometry = new THREE.BufferGeometry()
+const count = 999
+const cubePositionsArray = new Float32Array(count * 3 * 3)
+const cubePositionsAttribute = new THREE.BufferAttribute(cubePositionsArray,3)
+const spherePositionsArray = new Float32Array(count * 3 * 3)
+const spherePositionsAttribute = new THREE.BufferAttribute(spherePositionsArray,3)
+const cubeGeometry = new THREE.BufferGeometry()
+const sphereGeometry = new THREE.BufferGeometry()
 
-const triangleBuilder = ()=>{
+const cubeBuilder = ()=>{
     for(var i=0;i<count*3*3;i++){
-        positionsArray[i]=Math.random()-0.5
+        cubePositionsArray[i]=Math.random()-0.5
     }
-    geometry.setAttribute('position',positionsAttribute)
+    cubeGeometry.setAttribute('position',cubePositionsAttribute)
 }
+
+const sphereBuilder = ()=>{
+    for(var i=0;i<count*3;i=i+3){
+        const ra1 = Math.random() - 0.5
+        const ra2 = Math.random() * 2 - 1
+        spherePositionsArray[i]=Math.cos(Math.PI*ra1)*Math.cos(Math.PI*ra2) * 0.5
+        spherePositionsArray[i+1]=(Math.cos(Math.PI*ra1)*Math.sin(Math.PI*ra2) + 2) * 0.5
+        spherePositionsArray[i+2]=Math.sin(Math.PI*ra1) * 0.5
+    }
+    sphereGeometry.setAttribute('position',spherePositionsAttribute)
+}
+
+sphereBuilder()
 
 const material = new THREE.MeshBasicMaterial({ 
     color: 0x000000,
     wireframe: true
 })
-const mesh = new THREE.Mesh(geometry, material)
-scene.add(mesh)
+const cube = new THREE.Mesh(cubeGeometry, material)
+const sphere = new THREE.Mesh(sphereGeometry, material)
+scene.add(cube,sphere)
 
 // Sizes
 const sizes = {
@@ -92,8 +109,8 @@ const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
 
-    triangleBuilder()
-    geometry.dispose()
+    cubeBuilder()
+    cubeGeometry.dispose()
     
     // Update controls
     controls.update()
