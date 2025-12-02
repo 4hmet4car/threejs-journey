@@ -75,6 +75,10 @@ const sizes = {
     height: window.innerHeight
 }
 
+const zoom = 2
+
+const aspect = (sizes.width / sizes.height) * zoom
+
 window.addEventListener('resize', () =>
 {
     // Update sizes
@@ -83,8 +87,8 @@ window.addEventListener('resize', () =>
 
     // Update camera
     // camera.aspect = sizes.width / sizes.height
-    camera.left = -sizes.width / sizes.height
-    camera.right = sizes.width / sizes.height
+    camera.left = -aspect
+    camera.right = aspect
     camera.updateProjectionMatrix()
 
     // Update renderer
@@ -96,10 +100,11 @@ window.addEventListener('resize', () =>
  * Camera
  */
 // Base camera
-const camera = new THREE.OrthographicCamera( -sizes.width / sizes.height, sizes.width / sizes.height, 1, -1, 0.1, 100)
-camera.position.x = 3
-camera.position.y = 3
-camera.position.z = 3
+const camera = new THREE.OrthographicCamera( -aspect, aspect, zoom, -zoom, 0.1, 100)
+camera.position.x = 1
+camera.position.y = 1
+camera.position.z = 1
+camera.zoom = 1
 scene.add(camera)
 
 // Controls
