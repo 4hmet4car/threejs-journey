@@ -18,5 +18,6 @@ threejs-journey/<br>
 ├── [08-geometries](https://4hmet4car-08-geometries.vercel.app/)<br>
 ├── [09-debug-ui](https://4hmet4car-09-debug-ui.vercel.app/)<br>
 ├── [10-textures](https://4hmet4car-10-textures.vercel.app/)<br>
+├── batch-cwebp<br>
 ├── LICENSE<br>
 └── README.md<br>
