@@ -77,13 +77,14 @@ const sizes = {
 
 const zoom = 2
 
-const aspect = (sizes.width / sizes.height) * zoom
+let aspect = (sizes.width / sizes.height) * zoom
 
 window.addEventListener('resize', () =>
 {
     // Update sizes
     sizes.width = window.innerWidth
     sizes.height = window.innerHeight
+    aspect = (sizes.width / sizes.height) * zoom
 
     // Update camera
     // camera.aspect = sizes.width / sizes.height
