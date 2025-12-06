@@ -8,7 +8,7 @@ import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
  * Base
  */
 // Debug
-const gui = new GUI()
+// const gui = new GUI()
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -48,42 +48,99 @@ const matcapTexture = textureLoader.load('/textures/matcaps/7.png')
 matcapTexture.colorSpace = THREE.SRGBColorSpace
 
 /**
- * Fonts
+ * Text Objects
  */
+// Font Loader
 const fontLoader = new FontLoader(loadingManager)
-fontLoader.load('/fonts/OpenFont_Regular.json', (font)=>{
-    const textGeometry = new TextGeometry(
-        `who
+
+// const texts = {}
+
+const textGenerator = (input,x=0,y=0,z=0,rx=-Math.PI*0.5,ry=0,rz=0)=>{
+    fontLoader.load('/fonts/OpenFont_Regular.json', (font)=>{
+    const textGeometry = new TextGeometry(input,
+            {
+                font: font,
+                size: 0.2,
+                depth: 0.1,
+                curveSegments: 1,
+                // bevelEnabled: true,
+                // bevelThickness: 0.03,
+                // bevelSize: 0.02,
+                // bevelOffset: 0,
+                // bevelSegments: 5
+            }
+        )
+        textGeometry.computeBoundingBox()
+        console.log(textGeometry.boundingBox)
+        // textGeometry.translate(
+        //     0,
+        //     -textGeometry.boundingBox.min.y,
+        //     0
+        // )
+        textGeometry.center()
+        
+        const textMaterial = new THREE.MeshMatcapMaterial()
+        textMaterial.matcap = matcapTexture
+        // textMaterial.wireframe=true
+        const text = new THREE.Mesh(textGeometry,textMaterial)
+        text.rotation.set(rx,ry,rz)
+        text.position.set(x,y,z)
+        // texts[input]=text
+        scene.add(text)
+        // console.log(texts)
+    })
+}
+
+textGenerator(`who
 are
-you?`,
-        {
-            font: font,
-            size: 0.2,
-            depth: 0.1,
-            curveSegments: 1,
-            // bevelEnabled: true,
-            // bevelThickness: 0.03,
-            // bevelSize: 0.02,
-            // bevelOffset: 0,
-            // bevelSegments: 5
-        }
-    )
-    textGeometry.computeBoundingBox()
-    console.log(textGeometry.boundingBox)
-    // textGeometry.translate(
-    //     0,
-    //     -textGeometry.boundingBox.min.y,
-    //     0
-    // )
-    textGeometry.center()
+you`)
+
+for(let i=0;i<10;i++){
+    let x = (Math.random()-0.5)*2
+    let y = (Math.random()-0.5)*2
+    let z = (Math.random()-0.5)*2
+    let rx = Math.PI * 0.5 * i
+    let ry = Math.PI * 0.5 * i
+    let rz = Math.PI * 0.5 * i
+    if(!(-0.55<x && x<0.55) || !(-0.2<y && y<0.2) || !(-0.55<z && z<0.55)){
+        textGenerator('?',x,y,z,rx,ry,rz)
+    }
+}
+
+// fontLoader.load('/fonts/OpenFont_Regular.json', (font)=>{
+//     const textGeometry = new TextGeometry(
+//         `who
+// are
+// you`,
+//         {
+//             font: font,
+//             size: 0.2,
+//             depth: 0.1,
+//             curveSegments: 1,
+//             // bevelEnabled: true,
+//             // bevelThickness: 0.03,
+//             // bevelSize: 0.02,
+//             // bevelOffset: 0,
+//             // bevelSegments: 5
+//         }
+//     )
+//     textGeometry.computeBoundingBox()
+//     console.log(textGeometry.boundingBox)
+//     // textGeometry.translate(
+//     //     0,
+//     //     -textGeometry.boundingBox.min.y,
+//     //     0
+//     // )
+//     textGeometry.center()
     
-    const textMaterial = new THREE.MeshMatcapMaterial()
-    textMaterial.matcap = matcapTexture
-    // textMaterial.wireframe=true
-    const text = new THREE.Mesh(textGeometry,textMaterial)
-    text.rotation.x = -Math.PI * 0.5
-    scene.add(text)
-})
+//     const textMaterial = new THREE.MeshMatcapMaterial()
+//     textMaterial.matcap = matcapTexture
+//     // textMaterial.wireframe=true
+//     const text = new THREE.Mesh(textGeometry,textMaterial)
+// })
+
+// text.rotation.x = -Math.PI * 0.5
+// scene.add(text)
 
 /**
  * Object
@@ -158,6 +215,12 @@ const clock = new THREE.Clock()
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
+
+    // // Add text
+    // if(texts.length && addedTexts){
+    //     scene.add(texts[0])
+    //     addedTexts-=1
+    // }
 
     // Update controls
     controls.update()
