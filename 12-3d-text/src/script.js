@@ -53,11 +53,14 @@ matcapTexture.colorSpace = THREE.SRGBColorSpace
 // Font Loader
 const fontLoader = new FontLoader(loadingManager)
 
-// const texts = {}
+const textGeometries = {}
+
+const textMaterial = new THREE.MeshMatcapMaterial()
+textMaterial.matcap = matcapTexture
 
 const textGenerator = (input,x=0,y=0,z=0,rx=-Math.PI*0.5,ry=0,rz=0)=>{
     fontLoader.load('/fonts/OpenFont_Regular.json', (font)=>{
-    const textGeometry = new TextGeometry(input,
+    textGeometries.input = new TextGeometry(input,
             {
                 font: font,
                 size: 0.2,
@@ -70,25 +73,24 @@ const textGenerator = (input,x=0,y=0,z=0,rx=-Math.PI*0.5,ry=0,rz=0)=>{
                 // bevelSegments: 5
             }
         )
-        textGeometry.computeBoundingBox()
-        console.log(textGeometry.boundingBox)
+        // textGeometry.computeBoundingBox()
+        // console.log(textGeometry.boundingBox)
         // textGeometry.translate(
         //     0,
         //     -textGeometry.boundingBox.min.y,
         //     0
         // )
-        textGeometry.center()
+        textGeometries.input.center()
         
-        const textMaterial = new THREE.MeshMatcapMaterial()
-        textMaterial.matcap = matcapTexture
         // textMaterial.wireframe=true
-        const text = new THREE.Mesh(textGeometry,textMaterial)
+        const text = new THREE.Mesh(textGeometries.input,textMaterial)
         text.rotation.set(rx,ry,rz)
         text.position.set(x,y,z)
         // texts[input]=text
         scene.add(text)
         // console.log(texts)
     })
+    console.log(textGeometries)
 }
 
 textGenerator(`who
