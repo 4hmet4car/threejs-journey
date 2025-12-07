@@ -53,96 +53,100 @@ matcapTexture.colorSpace = THREE.SRGBColorSpace
 // Font Loader
 const fontLoader = new FontLoader(loadingManager)
 
-const textGeometries = {}
+// const textGeometries = {}
+// const textMeshes = {}
 
-const textMaterial = new THREE.MeshMatcapMaterial()
-textMaterial.matcap = matcapTexture
+// const textMaterial = new THREE.MeshMatcapMaterial()
+// textMaterial.matcap = matcapTexture
 
-const textGenerator = (input,x=0,y=0,z=0,rx=-Math.PI*0.5,ry=0,rz=0)=>{
-    fontLoader.load('/fonts/OpenFont_Regular.json', (font)=>{
-    textGeometries.input = new TextGeometry(input,
-            {
-                font: font,
-                size: 0.2,
-                depth: 0.1,
-                curveSegments: 1,
-                // bevelEnabled: true,
-                // bevelThickness: 0.03,
-                // bevelSize: 0.02,
-                // bevelOffset: 0,
-                // bevelSegments: 5
-            }
-        )
-        // textGeometry.computeBoundingBox()
-        // console.log(textGeometry.boundingBox)
-        // textGeometry.translate(
-        //     0,
-        //     -textGeometry.boundingBox.min.y,
-        //     0
-        // )
-        textGeometries.input.center()
+// const textGenerator = (input,x=0,y=0,z=0,rx=-Math.PI*0.5,ry=0,rz=0)=>{
+//     fontLoader.load('/fonts/OpenFont_Regular.json', (font)=>{
+//     textGeometries.input = new TextGeometry(input,
+//             {
+//                 font: font,
+//                 size: 0.2,
+//                 depth: 0.1,
+//                 curveSegments: 1,
+//                 // bevelEnabled: true,
+//                 // bevelThickness: 0.03,
+//                 // bevelSize: 0.02,
+//                 // bevelOffset: 0,
+//                 // bevelSegments: 5
+//             }
+//         )
+//         // textGeometry.computeBoundingBox()
+//         // console.log(textGeometry.boundingBox)
+//         // textGeometry.translate(
+//         //     0,
+//         //     -textGeometry.boundingBox.min.y,
+//         //     0
+//         // )
+//         textGeometries.input.center()
         
-        // textMaterial.wireframe=true
-        const text = new THREE.Mesh(textGeometries.input,textMaterial)
-        text.rotation.set(rx,ry,rz)
-        text.position.set(x,y,z)
-        // texts[input]=text
-        scene.add(text)
-        // console.log(texts)
-    })
-    console.log(textGeometries)
-}
+//         // textMaterial.wireframe=true
+//         const text = new THREE.Mesh(textGeometries.input,textMaterial)
+//         text.rotation.set(rx,ry,rz)
+//         text.position.set(x,y,z)
+//         textMeshes.input=text
+//         // texts[input]=text
+//         scene.add(textMeshes.input)
+//         // console.log(texts)
+//     })
+// }
 
-textGenerator(`who
-are
-you`)
-
-for(let i=0;i<10;i++){
-    let x = (Math.random()-0.5)*2
-    let y = (Math.random()-0.5)*2
-    let z = (Math.random()-0.5)*2
-    let rx = Math.PI * 0.5 * i
-    let ry = Math.PI * 0.5 * i
-    let rz = Math.PI * 0.5 * i
-    if(!(-0.55<x && x<0.55) || !(-0.2<y && y<0.2) || !(-0.55<z && z<0.55)){
-        textGenerator('?',x,y,z,rx,ry,rz)
-    }
-}
-
-// fontLoader.load('/fonts/OpenFont_Regular.json', (font)=>{
-//     const textGeometry = new TextGeometry(
-//         `who
+// textGenerator(`who
 // are
-// you`,
-//         {
-//             font: font,
-//             size: 0.2,
-//             depth: 0.1,
-//             curveSegments: 1,
-//             // bevelEnabled: true,
-//             // bevelThickness: 0.03,
-//             // bevelSize: 0.02,
-//             // bevelOffset: 0,
-//             // bevelSegments: 5
-//         }
-//     )
-//     textGeometry.computeBoundingBox()
-//     console.log(textGeometry.boundingBox)
-//     // textGeometry.translate(
-//     //     0,
-//     //     -textGeometry.boundingBox.min.y,
-//     //     0
-//     // )
-//     textGeometry.center()
-    
-//     const textMaterial = new THREE.MeshMatcapMaterial()
-//     textMaterial.matcap = matcapTexture
-//     // textMaterial.wireframe=true
-//     const text = new THREE.Mesh(textGeometry,textMaterial)
-// })
+// you`)
 
-// text.rotation.x = -Math.PI * 0.5
-// scene.add(text)
+// textGenerator(`WHO
+// ARE
+// YOU`)
+
+// for(let i=0;i<5;i++){
+//     let x = (Math.random()-0.5)*2
+//     let y = (Math.random()-0.5)*2
+//     let z = (Math.random()-0.5)*2
+//     let rx = 0//Math.PI * 0.5 * i
+//     let ry = 0//Math.PI * 0.5 * i
+//     let rz = 0//Math.PI * 0.5 * i
+//     if(!(-0.55<x && x<0.55) || !(-0.2<y && y<0.2) || !(-0.55<z && z<0.55)){
+//         textGenerator('?',x,y,z,rx,ry,rz)
+//     }
+// }
+
+fontLoader.load('/fonts/OpenFont_Regular.json', (font)=>{
+    const textGeometry = new TextGeometry(
+        `who
+are
+you?`,
+        {
+            font: font,
+            size: 0.2,
+            depth: 0.1,
+            curveSegments: 1,
+            // bevelEnabled: true,
+            // bevelThickness: 0.03,
+            // bevelSize: 0.02,
+            // bevelOffset: 0,
+            // bevelSegments: 5
+        }
+    )
+    textGeometry.computeBoundingBox()
+    console.log(textGeometry.boundingBox)
+    // textGeometry.translate(
+    //     0,
+    //     -textGeometry.boundingBox.min.y,
+    //     0
+    // )
+    textGeometry.center()
+    
+    const textMaterial = new THREE.MeshMatcapMaterial()
+    textMaterial.matcap = matcapTexture
+    // textMaterial.wireframe=true
+    const text = new THREE.Mesh(textGeometry,textMaterial)
+    text.rotation.x = -Math.PI * 0.5
+    scene.add(text)
+})
 
 /**
  * Object
