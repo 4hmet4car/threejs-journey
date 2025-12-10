@@ -200,7 +200,7 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-renderer.setClearColor('#b8b9b4')
+renderer.setClearColor('white')
 
 /**
  * Animate
